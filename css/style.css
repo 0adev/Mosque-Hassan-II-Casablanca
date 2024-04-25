@@ -1,0 +1,753 @@
+:root {
+  --sky: linear-gradient(
+    to bottom,
+    rgb(46, 164, 255) 20%,
+    rgb(193, 241, 255) 80%
+  );
+  --sun: radial-gradient(
+    circle,
+    rgb(255, 248, 170) 10%,
+    rgba(252, 219, 120, 1) 60%
+  );
+
+  /* == mosque == */
+  --large-dome: #246b3e;
+  --small-dome: #5d4a3f;
+  --circle-shape: radial-gradient(circle, #eadbbe 10%, transparent 10%),
+    radial-gradient(circle, #468a4ddd 20%, transparent 10%),
+    radial-gradient(circle, #ccba97 30%, transparent 10%);
+  --floor: linear-gradient(
+    to bottom,
+    rgb(246, 236, 210) 80%,
+    rgba(198, 177, 145, 0.748) 10%
+  );
+  --mosque: #fffbe1;
+  /* --entrance: #dfcaa5; */
+  --entrance: #ccba97;
+  --minaret: #5d4a3f;
+
+  /* == sea == */
+  --sea: linear-gradient(to bottom, #55a9cd, #61c0e8, #74d5fe);
+  --wave: linear-gradient(to bottom, rgba(0, 0, 0, 0) 45%, #3a94bb 80%),
+    radial-gradient(
+      circle at center -30px,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0) 70px,
+      #3b9fc9 0%
+    );
+  /* border */
+  --border-cl: #5d4a3f;
+  --b-radius: 30px 30px 0 0;
+  --b-bottom: none;
+}
+
+/* General selectors */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* border: .2px solid; */
+}
+
+body {
+  width: 100%;
+  background: var(--sky) repeat-x;
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  grid-template-rows: 10% 5fr 11%;
+}
+
+.sun-container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  justify-content: end;
+}
+
+.mosque-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sea-container {
+  width: 100%;
+  height: 100%;
+  background: var(--sea);
+  overflow: hidden;
+  position: relative;
+}
+
+/* components */
+
+/* !====== sun ======= */
+
+.sun-container > .sun {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: var(--sun);
+  filter: drop-shadow(0 0 10px rgb(255, 255, 172));
+  margin-block-start: 1rem;
+  margin-inline-end: 3rem;
+}
+
+/* !====== clouds ======= */
+.clouds {
+  width: 150%;
+  height: 50%;
+  background: url(/images/clouds03.png) repeat;
+  background-size: 900px 400px;
+  position: absolute;
+  top: 0;
+  left: -20%;
+  opacity: 0.3;
+  filter: blur(3px);
+  -moz-animation: moving 80s linear infinite;
+  -ms-animation: moving 80s linear infinite;
+  -o-animation: moving 80s linear infinite;
+  -webkit-animation: moving 80s linear infinite;
+  animation: moving 80s linear infinite;
+}
+
+/* !====== mosque ======= */
+
+/*  ===== mosque ===== */
+
+.mosque-container > .mosque {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+}
+
+/* === first__floor === */
+.mosque-container .first__floor {
+  width: clamp(38rem, 53vw, 100%);
+  height: 4.5rem;
+  display: flex;
+  background-color: var(--mosque);
+  padding-inline: 0.25rem;
+  border: 0.25rem solid var(--border-cl);
+  border-bottom: var(--b-bottom);
+}
+
+.mosque-container .first__floor .left_side {
+  width: 45.75%;
+  height: 100%;
+  display: flex;
+  align-items: end;
+  overflow: hidden;
+}
+
+.first__floor .shape1 {
+  width: 1.5rem;
+  height: 2.5rem;
+  background-color: var(--entrance);
+  border: 0.2rem solid var(--border-cl);
+  border-bottom: var(--b-bottom);
+  border-radius: var(--b-radius);
+  margin-inline: 0.25rem 0.5rem;
+}
+
+/* shape2 */
+
+.first__floor .shape2 .dome {
+  width: 2rem;
+  height: 1rem;
+  margin: auto;
+  border-radius: var(--b-radius);
+  background: var(--small-dome);
+}
+
+.first__floor .shape2 > .entrance {
+  width: 3.5rem;
+  height: 2.75rem;
+  border: 0.25rem solid var(--border-cl);
+  border-bottom: var(--b-bottom);
+  padding-top: 0.4rem;
+}
+
+.first__floor .shape2 .door {
+  width: 1.5rem;
+  height: 100%;
+  margin: auto;
+  background-color: var(--entrance);
+  border: 0.2rem solid var(--border-cl);
+  border-bottom: var(--b-bottom);
+  border-radius: var(--b-radius);
+}
+
+/* shape3 */
+
+.first__floor .shape3 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-block-start: 0.25rem;
+}
+
+.first__floor .shape3 .dome {
+  width: 4rem;
+  height: 2rem;
+  margin: auto;
+  border-radius: var(--b-radius);
+  background: var(--small-dome);
+}
+
+.first__floor .shape3 .entrance {
+  width: 100%;
+  height: calc(100% - 40%);
+  border: 0.25rem solid var(--border-cl);
+  border-bottom: var(--b-bottom);
+  border-left: none;
+  border-right: none;
+  display: flex;
+  padding-top: 0.25rem;
+}
+
+.first__floor .shape3 .door {
+  width: 1.15rem;
+  height: 100%;
+  margin: auto;
+  background-color: var(--entrance);
+  border: 0.2rem solid var(--border-cl);
+  border-bottom: var(--b-bottom);
+  border-radius: var(--b-radius);
+}
+
+/* center__side */
+.mosque-container .first__floor .center_side {
+  width: 8.5%;
+  position: relative;
+}
+
+.first__floor .center_side .minaret {
+  width: 100%;
+  height: 28rem;
+  background: linear-gradient(to bottom, transparent 18%, var(--minaret) 0%);
+  position: absolute;
+  top: -23.76rem;
+  display: grid;
+  grid-template-rows: 1% 1.75% 3% 3fr 2fr 15fr 3fr;
+  align-items: end;
+  overflow: hidden;
+}
+
+.first__floor .minaret > .item1 {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: end center;
+}
+
+.first__floor .minaret > .item1 > .circle {
+  width: 0.3rem;
+  height: 0.3rem;
+  border-radius: 50%;
+  background-color: var(--minaret);
+}
+
+/* item2 */
+.first__floor .minaret > .item2 {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: end center;
+}
+
+.first__floor .minaret > .item2 > .circle {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--minaret);
+}
+
+/* item3 */
+.first__floor .minaret > .item3 {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  display: grid;
+  place-items: end center;
+}
+
+.first__floor .minaret > .item3 > .circle {
+  width: 1.5rem;
+  height: 1rem;
+  background-color: var(--mosque);
+  border: 0.2rem solid var(--border-cl);
+  border-bottom: var(--b-bottom);
+  border-radius: var(--b-radius);
+}
+
+/* item4 */
+.first__floor .minaret > .item4 {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  padding-inline: 0.75rem;
+}
+
+.first__floor .minaret > .item4 > .wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: var(--minaret);
+  display: flex;
+  gap: 0.15rem;
+  padding: 0.15rem 0.15rem 0;
+}
+
+.first__floor .minaret > .item4 > .wrapper > * {
+  background-color: var(--mosque);
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: end center;
+}
+
+.first__floor .minaret > .item4 > .wrapper > * > .shape {
+  width: 0.5rem;
+  height: 1rem;
+  background-color: #b19c79;
+  border-radius: var(--b-radius);
+}
+
+/* item5 */
+.first__floor .minaret > .item5 {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  padding: 0.15rem 0.15rem;
+  display: flex;
+}
+
+.first__floor .minaret > .item5 > .tile {
+  width: 100%;
+  height: 100%;
+  background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSANNmRxOjVxr_m9w7jzYHSgaLo3I-q2dDujA&usqp=CAU) no-repeat;
+  background-position: center;
+  background-size: 70px 90px;
+  opacity: .9;
+  filter: contrast(160%) ;
+}
+
+
+
+/* item6 */
+.first__floor .minaret > .item6 {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  display: flex;
+  gap: 0.15rem;
+  padding-inline: 0.15rem;
+}
+
+.first__floor .minaret > .item6 > * {
+  width: 100%;
+  height: 100%;
+  background-color: var(--mosque);
+}
+
+.first__floor .minaret > .item6 > * > .triangles {
+  width: 100%;
+  display: flex;
+  place-content: center;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.first__floor .minaret > .item6 > * > .triangles > .triangle {
+  --border-size: 12px;
+  width: fit-content;
+  border-left: var(--border-size) solid transparent;
+  border-right: 0 solid transparent;
+  border-bottom: var(--border-size) solid #6da572;
+}
+
+.first__floor .minaret > .item6 > * .triangle:nth-of-type(1) {
+  transform: rotate(180deg);
+}
+.first__floor .minaret > .item6 > * .triangle:nth-of-type(2) {
+  transform: rotate(-90deg);
+}
+
+.first__floor .minaret > .item6 > * > .dome-shape {
+  width: 1.25rem;
+  height: 2rem;
+  margin: auto;
+  background-color: #6da572;
+  clip-path: polygon(50% 0%, 100% 36%, 100% 100%, 0 100%, 0 36%);
+  border-radius: 30px 30px 0 0;
+}
+
+.first__floor .minaret > .item6 > * > .oblong {
+  width: 1.25rem;
+  height: 10rem;
+  margin: auto;
+  background-color: #ead1b2;
+  margin-top: 0.5rem;
+  display: grid;
+  place-items: end center;
+  padding-bottom: 1rem;
+}
+
+.first__floor .minaret > .item6 > * > .oblong .shape {
+  width: 0.5rem;
+  height: 1.5rem;
+  background-color: #ab956e;
+  border-radius: 30px;
+}
+
+/* item7 */
+.first__floor .minaret > .item7 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 0.15rem 0.15rem 0;
+  background-color: var(--minaret);
+}
+
+.first__floor .minaret > .item7 > * {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  background-color: var(--mosque);
+  padding: 0.4rem 0 0;
+}
+
+.first__floor .minaret > .item7 > * > * {
+  width: 1.4rem;
+  height: 100%;
+  margin: auto;
+  background-color: var(--entrance);
+  border: 0.23rem solid var(--border-cl);
+  border-bottom: var(--b-bottom);
+  border-radius: var(--b-radius);
+}
+
+/* right__side */
+.mosque-container .first__floor .right_side {
+  width: 45.75%;
+  height: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: end;
+}
+
+.first__floor .right_side .shape1 {
+  margin-inline: 0.5rem 0;
+}
+
+.first__floor .right_side .shape3 .entrance {
+  border-right: none;
+}
+
+/* === second__floor === */
+.mosque-container .second__floor {
+  width: clamp(32rem, 50vw, 100%);
+  height: 4rem;
+  display: flex;
+  place-items: center;
+  background-color: var(--mosque);
+  border: 0.25rem solid var(--border-cl);
+  border-bottom: var(--b-bottom);
+}
+
+.mosque-container .second__floor .circle {
+  width: min(8rem, 100%);
+  height: 8rem;
+  background: var(--circle-shape);
+}
+
+/* === third__floor === */
+.mosque-container .third__floor {
+  width: clamp(22rem, 40vw, 100%);
+  height: 1.25rem;
+  display: grid;
+  place-items: end center;
+  background-color: #202020;
+  padding-inline: 0.25rem;
+  border: 0.25rem solid #202020;
+  border-bottom: var(--b-bottom);
+  position: relative;
+}
+
+.mosque-container .third__floor::before {
+  content: "";
+  width: calc(100% + 3rem);
+  height: 2rem;
+  margin: auto;
+  background-color: var(--large-dome);
+  clip-path: polygon(5% 0, 95% 0, 100% 100%, 0 100%);
+  position: absolute;
+  top: -1.2rem;
+}
+
+/* === fourth__floor === */
+.mosque-container .fourth__floor {
+  width: clamp(16rem, 10vw, 100%);
+  height: 1.25rem;
+  display: grid;
+  place-items: end center;
+  background-color: #202020;
+  padding-inline: 0.25rem;
+  border: 0.25rem solid #202020;
+  border-bottom: var(--b-bottom);
+  position: relative;
+}
+
+.mosque-container .fourth__floor::before {
+  content: "";
+  width: calc(100% + 2rem);
+  height: 2rem;
+  margin: auto;
+  background-color: var(--large-dome);
+  clip-path: polygon(5% 0, 95% 0, 100% 100%, 0 100%);
+  position: absolute;
+  top: -2.2rem;
+}
+
+/* mosque-container ==> floor */
+.mosque-container > .floor {
+  width: 100%;
+  height: 3rem;
+  background: var(--floor);
+  align-self: end;
+}
+
+/* !====== sea ======= */
+
+.sea-container > .wave {
+  width: 200%;
+  height: 100%;
+  background: var(--wave);
+  background-repeat: repeat-x;
+  background-size: 60px 120px;
+  position: relative;
+  opacity: 1;
+  animation: ripple ease-in-out infinite alternate;
+}
+
+.wave::after {
+  content: "";
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 45%, #47a1c8 80%),
+    radial-gradient(
+      circle at center -30px,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0) 70px,
+      #4cadd6 0%
+    );
+  background-repeat: repeat-x;
+  background-size: 60px 120px;
+  position: absolute;
+  top: 10%;
+  left: -7%;
+}
+
+.sea-container > .wave:nth-of-type(1) {
+  top: -25%;
+  animation-duration: 2.5s;
+}
+.sea-container > .wave:nth-of-type(2) {
+  top: -105%;
+  animation-duration: 2.7s;
+}
+.sea-container > .wave:nth-of-type(3) {
+  top: -185%;
+  animation-duration: 3s;
+}
+.sea-container > .wave:nth-of-type(4) {
+  top: -265%;
+  animation-duration: 3.5s;
+}
+.sea-container > .wave:nth-of-type(5) {
+  top: -345%;
+  animation-duration: 4s;
+}
+
+.fish_container {
+  width: 100%;
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center start;
+}
+
+.fish_container > .fish {
+  width: 3rem;
+  height: 0.5rem;
+  background-color: #e4e4e4;
+  clip-path: polygon(100% 74%, 0 86%, 100% 100%);
+  animation: swim 10s infinite linear;
+}
+
+.fish_container > .fish:nth-of-type(1) {
+  margin-left: 1rem;
+}
+.fish_container > .fish:nth-of-type(3) {
+  margin-left: 2rem;
+}
+.fish_container > .fish:nth-of-type(5) {
+  margin-left: 1rem;
+}
+.fish_container > .fish:nth-of-type(7) {
+  margin-left: 1.5rem;
+}
+
+/* ==== animation ==== */
+@-moz-keyframes moving {
+  0% {
+    -webkit-transform: translate3d(0px, 0px, 0px);
+  }
+  50% {
+    -webkit-transform: translate3d(300px, 0px, 0px);
+  }
+  100% {
+    -webkit-transform: translate3d(0px, 0px, 0px);
+  }
+}
+
+@-webkit-keyframes moving {
+  0% {
+    -webkit-transform: translate3d(0px, 0px, 0px);
+  }
+
+  50% {
+    -webkit-transform: translate3d(300px, 0px, 0px);
+  }
+
+  100% {
+    -webkit-transform: translate3d(0px, 0px, 0px);
+  }
+}
+
+@keyframes moving {
+  0% {
+    -webkit-transform: translate3d(0px, 0px, 0px);
+  }
+
+  50% {
+    -webkit-transform: translate3d(300px, 0px, 0px);
+  }
+
+  100% {
+    -webkit-transform: translate3d(0px, 0px, 0px);
+  }
+}
+
+/* waves */
+@-moz-keyframes ripple {
+  from {
+    transform: translate3d(-18px, -5px, 0);
+  }
+}
+
+@-webkit-keyframes ripple {
+  from {
+    transform: translate3d(-18px, -5px, 0);
+  }
+}
+
+@keyframes ripple {
+  from {
+    transform: translate3d(-18px, -5px, 0);
+  }
+}
+
+/* fish */
+@-moz-keyframes swim {
+  0% {
+    transform: translateX(-6rem);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  50% {
+    margin-left: 0;
+  }
+
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+@-webkit-keyframes swim {
+  0% {
+    transform: translateX(-6rem);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  50% {
+    margin-left: 0;
+  }
+
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+@keyframes swim {
+  0% {
+    transform: translateX(-6rem);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  50% {
+    margin-left: 0;
+  }
+
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+@media (width <= 80rem) {
+  html,
+  body {
+    overflow: hidden;
+  }
+
+  .mosque-container .first__floor .left_side,
+  .mosque-container .first__floor .right_side {
+    width: 45%;
+  }
+  .mosque-container .first__floor .center_side {
+    width: 10%;
+  }
+
+  .first__floor .minaret > .item7 > * {
+    width: 100%;
+    padding: 0.25rem 0 0;
+  }
+
+  .first__floor .minaret > .item7 > * > * {
+    width: 1.25rem;
+  }
+}
